@@ -1,17 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
 body {
     margin: 0;
     padding: 0;
-    background-color: rgb(234, 233, 233);
+    background-color: #F4E8C1;
+    font-family: Raleway;
 }
 
 .searchBar {
-    margin-top: 10em;
+    margin-top: 50px;
     width: 60%;
     height: 4em;
     padding-left: 10px;
     border: none;
     border-radius: 8px;
     font-size: 18px;
+    font-family: Raleway;
 }
 
 .searchContainer {
@@ -19,12 +23,23 @@ body {
     justify-content: center;
 }
 
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
 .filterContainer {
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 50px;
-    max-height: 150px;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .filterItem {
@@ -32,7 +47,7 @@ body {
 }
 
 .buttonContainer {
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
 }
@@ -50,6 +65,7 @@ body {
     font-weight: 400;
     font-size: 16px;
     transition: border-radius .25s;
+    font-family: Raleway;
 }
 
 .btn:hover {

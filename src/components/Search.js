@@ -1,6 +1,7 @@
 // import the css, and state management from react
 import './Search.css';
 import {useState} from "react";
+import Result from "./Result";
 
 function Search() {
     // Initialize our state with variables we need to keep track of
@@ -21,9 +22,13 @@ function Search() {
     }
 
 
-    // redner this HTML to the DOM
+    // render this HTML to the DOM
     return (
         <>
+            <div className={"titleContainer"}>
+                <h1 className={"title"}>CCD Search Engine</h1>
+                <p className={"title"}>By: Luke Tarr, Stefon Miller, and Matthew McKee</p>
+            </div>
             <div className={"searchContainer"}>
                 <input onChange={e => setSearchTerm(e.target.value)} className={"searchBar"}
                        type={"text"} placeholder={"Search the CCD..."}/>
@@ -48,8 +53,8 @@ function Search() {
                 <input id={"searchBtn"} className={"btn"} type={"button"} value={"Search"}
                        onClick={e => console.log(filterTerms)}/>
             </div>
+            <Result title={"Result"}/>
         </>
-
     );
 }
 
