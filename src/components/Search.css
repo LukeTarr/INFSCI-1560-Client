@@ -44,6 +44,9 @@ body {
 
 .filterItem {
     margin: 10px;
+    border: none;
+    border-radius: 8px;
+    padding-left: 10px;
 }
 
 .buttonContainer {

@@ -8,10 +8,11 @@
     display: flex;
     justify-content: center;
     border-radius: 8px;
-    width: 35%;
+    width: 45%;
     height: 150px;
     background-color: rgb(243, 243, 243);
     transition: background-color .5s;
+    cursor: pointer;
 }
 
 .resultCard:hover {
