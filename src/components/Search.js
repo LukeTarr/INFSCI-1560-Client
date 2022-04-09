@@ -1,11 +1,13 @@
 // import the css, and state management from react
 import './Search.css';
 import {useState} from "react";
+import Result from "./Result";
 
 
 function Search() {
     // Initialize our state with variables we need to keep track of
-    const [apiResult, setApiResult] = useState({});
+    const [apiResult, setApiResult] = useState({hits: {hits: [{_source: {}}]}});
+    const [resultList, setResultList] = useState({});
     const [isFiltered, setIsFilter] = useState(false);
     const [filterTerms, setFilterTerms] = useState({});
 
@@ -21,20 +23,30 @@ function Search() {
     }
 
     async function handleSearch() {
-        console.log(filterTerms)
 
-        fetch("http://localhost:4999", {
-            method: "POST",
-            body: JSON.stringify(filterTerms),
-            headers: {
 
-            }
-        }).then(res => res.text())
-            .then(d => setApiResult(d))
+        if(Object.keys(filterTerms).length < 1){
+            alert("Add at least 1 query parameter.")
+        } else {
+
+            fetch("http://localhost:4999", {
+                method: "POST",
+                body: JSON.stringify(filterTerms),
+                headers: {}
+            }).then(res => res.json())
+                .then(d => {
+                        if (d.error) {
+                            alert(d.error)
+                        } else {
+                            setApiResult(d)
+                        }
+                    }
+                )
+        }
     }
 
 
-    // render this HTML to the DOM
+// render this HTML to the DOM
     return (
         <>
             <div className={"titleContainer"}>
@@ -70,8 +82,17 @@ function Search() {
                        onClick={handleSearch}/>
             </div>
 
+            {
+                apiResult.hits.hits.length > 0 ?
+                    apiResult.hits.hits.map((h, i) => {
+                        return <Result title={"ID: " + h._id} body={h._source.issue}/>
+                    })
+                    :
+                    <></>
+            }
 
         </>
+
     );
 }
 

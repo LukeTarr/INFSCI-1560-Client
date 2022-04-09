@@ -6,6 +6,8 @@ function Result(props) {
             <div className={"resultContainer"}>
                 <div className={"resultCard"}>
                     <h1>{props.title}</h1>
+                    <p>{props.body}</p>
+                    <p></p>
                 </div>
             </div>
         </>

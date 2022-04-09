@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #F4E8C1;
+    background-image: linear-gradient(to right, #a4d083, #8ac9cb);
     font-family: Raleway;
 }
 
