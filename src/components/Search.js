@@ -85,7 +85,14 @@ function Search() {
             {
                 apiResult.hits.hits.length > 0 ?
                     apiResult.hits.hits.map((h, i) => {
-                        return <Result title={"ID: " + h._id} body={h._source.issue}/>
+                        let issue = ''
+                        if(h._source.complaint_what_happened) {
+                            issue = h._source.complaint_what_happened.substring(0,397) + '...';
+                        }
+                        console.log(h)
+                        return <Result title={"ID: " + h._source.complaint_id} body={{'issue': issue,
+                                                                                      'company': h._source.company,
+                                                                                      'date': h._source.date_received}}/>
                     })
                     :
                     <></>
