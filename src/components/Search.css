@@ -55,33 +55,8 @@ body {
     justify-content: center;
 }
 
-.btn {
-    margin: 10px;
-    outline: 0;
-    cursor: pointer;
-    border: none;
-    padding: 0 56px;
-    line-height: 45px;
-    border-radius: 8px;
-    background-color: #0070f3;
-    color: white;
-    font-weight: 400;
-    font-size: 16px;
-    transition: border-radius .25s;
-    font-family: Raleway;
-}
-
-.btn:hover {
-    background: rgba(0, 118, 255, 0.9);
-    border-radius: 70%;
-    transition: border-radius .25s;
-
-}
-
-#searchBtn {
-    background-color: #308013;
-}
-
-#searchBtn:hover {
-    background-color: #30910d;
+.test {
+    margin: 5px;
+    width:5%;
+    height: 3%;
 }

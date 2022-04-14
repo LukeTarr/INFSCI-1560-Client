@@ -2,12 +2,12 @@
 import './Search.css';
 import {useState} from "react";
 import Result from "./Result";
-
+import Button from 'react-bootstrap/Button';
 
 function Search() {
     // Initialize our state with variables we need to keep track of
     const [apiResult, setApiResult] = useState({hits: {hits: [{_source: {}}]}});
-    const [resultList, setResultList] = useState({});
+    const [hasSearched, setHasSearched] = useState(false);
     const [isFiltered, setIsFilter] = useState(false);
     const [filterTerms, setFilterTerms] = useState({});
 
@@ -39,12 +39,12 @@ function Search() {
                             alert(d.error)
                         } else {
                             setApiResult(d)
+                            setHasSearched(true)
                         }
                     }
                 )
         }
     }
-
 
 // render this HTML to the DOM
     return (
@@ -70,29 +70,25 @@ function Search() {
                                             onChange={e => handleFilterChange("product", e.target.value)}/></label>
                         <label>Company:<input className={"filterItem"} type={"text"}
                                             onChange={e => handleFilterChange("company", e.target.value)}/></label>
+                        <label>ID:<input className={"filterItem"} type={"text"}
+                                            onChange={e => handleFilterChange("complaint_id", e.target.value)}/></label>
                     </div>
                     :
                     <></>
                 }
             </div>
             <div className={"buttonContainer"}>
-                <input id={"filterBtn"} className={"btn"} type={"button"} value={"Filter"}
-                       onClick={e => setIsFilter(!isFiltered)}/>
-                <input id={"searchBtn"} className={"btn"} type={"button"} value={"Search"}
-                       onClick={handleSearch}/>
+                <Button id={"filterBtn"} type={"button"} className={"test"}
+                       onClick={e => setIsFilter(!isFiltered)}>Filter</Button>
+                <Button id={"searchBtn"} type={"button"} className={"test"}
+                       onClick={handleSearch}>Search</Button>
             </div>
-
             {
-                apiResult.hits.hits.length > 0 ?
+                
+                apiResult.hits.hits.length > 0 && hasSearched ?
                     apiResult.hits.hits.map((h, i) => {
-                        let issue = ''
-                        if(h._source.complaint_what_happened) {
-                            issue = h._source.complaint_what_happened.substring(0,397) + '...';
-                        }
-                        console.log(h)
-                        return <Result title={"ID: " + h._source.complaint_id} body={{'issue': issue,
-                                                                                      'company': h._source.company,
-                                                                                      'date': h._source.date_received}}/>
+                        
+                        return <Result source={h._source}/>
                     })
                     :
                     <></>
